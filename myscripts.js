@@ -5,23 +5,43 @@ function myMachineA(p1) {
 	getting the Stored result message, the A machine returns the value to the I machine
 	and becomes ready for another statement.
  	*/
-
- 	myMachineE();
-    
-    myMachineD();
-
-    myMachineI();
+	alert(p1);
+        exp=p1.split(/[=.]/);
+        rhs=exp[1];
+        alert(rhs);
+        //send RHS to machine E and get result back in resE
+        resE=myMachineE(rhs);
+        console.log(resE);
+        //send store msg to D, get result from 
+        // myMachineD();
+        //return to I machine
+        //myMachineI();
 
     //Here it should be ready for another statement
 }
   
-function myMachineE(p1) {
+function myMachineE(p2) {
     /*
 	E = Expression machine. It can take an arithmetic expression (a polynomial as above) and split off each
 	term and send each term to a T machine and get the result integer back and sum all the results from all the terms
 	and return that sum to its sender. It has an array large enough to store the value of each term in the polynomial
 	it gets (to simplify its life, and help make visible what is going on).
     */
+    //separate polynomial term and send tern to machine T
+    str=rhs.split("+");
+    var polyterm=[];
+    str.forEach(function (char, idx) {
+    	polyterm.push(char);
+    });
+    resT=myMachineT(polyterm); 
+    //get result back from machineT and sum it all
+    var total=0;
+    for( var idx = 0; idx < resT.length ; ++idx ){
+	   total = total+parseInt(resT[idx]);
+	}
+    console.log(total);
+    //send result back to machineA
+    return total;
 }
 
 function myMachineT(p1) {
