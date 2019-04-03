@@ -16,8 +16,6 @@ function myMachineA(p1) {
         // myMachineD();
         //return to I machine
         //myMachineI();
-
-    //Here it should be ready for another statement
 }
   
 function myMachineE(p2) {
